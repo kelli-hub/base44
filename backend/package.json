@@ -1,0 +1,15 @@
+{
+  "name": "signature-liquor-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Signature Liquor Store API — catalogue, delivery-fee checkout and staff dashboard",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
