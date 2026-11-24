@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useCatalog } from '../context/Catalog.jsx';
+import PasswordField from '../components/PasswordField.jsx';
 import { formatDate, money } from '../lib/format.js';
 
 const STATUS_LABELS = {
@@ -61,19 +62,16 @@ function LoginCard({ onSignedIn }) {
           Enter the unique staff code to manage the shelves and see the orders placed on the public
           site.
         </p>
-        <label>
-          Staff code
-          <input
-            type="password"
-            name="code"
-            value={code}
-            onChange={(event) => setCode(event.target.value)}
-            autoComplete="current-password"
-            placeholder="Enter your code"
-            required
-            autoFocus
-          />
-        </label>
+        <PasswordField
+          label="Staff code"
+          name="code"
+          value={code}
+          onChange={(event) => setCode(event.target.value)}
+          autoComplete="current-password"
+          placeholder="Enter your code"
+          required
+          autoFocus
+        />
         {error && (
           <p className="form-error" role="alert">
             {error}
@@ -676,28 +674,22 @@ function CodePanel({ onChanged }) {
         with staff you trust.
       </p>
       <form onSubmit={submit}>
-        <label>
-          New staff code
-          <input
-            type="password"
-            value={code}
-            onChange={(event) => setCode(event.target.value)}
-            minLength={8}
-            required
-            autoComplete="new-password"
-          />
-        </label>
-        <label>
-          Repeat the code
-          <input
-            type="password"
-            value={confirm}
-            onChange={(event) => setConfirm(event.target.value)}
-            minLength={8}
-            required
-            autoComplete="new-password"
-          />
-        </label>
+        <PasswordField
+          label="New staff code"
+          value={code}
+          onChange={(event) => setCode(event.target.value)}
+          minLength={8}
+          required
+          autoComplete="new-password"
+        />
+        <PasswordField
+          label="Repeat the code"
+          value={confirm}
+          onChange={(event) => setConfirm(event.target.value)}
+          minLength={8}
+          required
+          autoComplete="new-password"
+        />
         {message && <p className={`admin-message ${message.ok ? 'ok' : 'error'}`}>{message.text}</p>}
         <button type="submit" className="btn btn-primary btn-sm" disabled={busy}>
           {busy ? 'Saving…' : 'Change code'}
